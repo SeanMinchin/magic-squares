@@ -92,32 +92,31 @@ void MagicSquare::Print() {
             }
             std::cout << magic_square.value(i, j) << ' ';
         }
-        std::cout << "\n";
+        std::cout << '\n';
     }
     std::cout << std::endl;
 }
 
 void MagicSquare::CheckSums() {
-    std::string row_sum_display = "Checking the sum of every row:      ";
-    std::string column_sum_display = "Checking the sum of every column:   ";
-    std::string diagonal_sum_display = "Checking the sum of every diagonal: ";
+    std::string row_sum_string = "Checking the sum of every row:      ";
+    std::string column_sum_string = "Checking the sum of every column:   ";
+    std::string diagonal_sum_string = "Checking the sum of every diagonal: ";
     int current_row_sum, current_column_sum, diagonal_sum_left = 0, diagonal_sum_right = 0;
 
     for(int i = 0; i < kSize; ++i) {
-        current_column_sum = 0;
-        current_row_sum = 0;
+        current_column_sum = 0, current_row_sum = 0;
         diagonal_sum_left += magic_square.value(i, i);
         diagonal_sum_right += magic_square.value(i, kSize - 1 - i);
         for(int j = 0; j < kSize; ++j) {
             current_column_sum += magic_square.value(j, i);
             current_row_sum += magic_square.value(i, j);
         }
-        row_sum_display += std::to_string(current_row_sum) + " ";
-        column_sum_display += std::to_string(current_column_sum) + " ";
+        row_sum_string.append(std::to_string(current_row_sum)).push_back(' ');
+        column_sum_string.append(std::to_string(current_column_sum)).push_back(' ');
     }
-    diagonal_sum_display += std::to_string(diagonal_sum_left) + " " + std::to_string(diagonal_sum_right);
+    diagonal_sum_string.append(std::to_string(diagonal_sum_left) + ' ' + std::to_string(diagonal_sum_right));
 
-    std::cout << row_sum_display.append("\n") << column_sum_display.append("\n") << diagonal_sum_display.append("\n") << std::endl;
+    std::cout << row_sum_string << '\n' << column_sum_string << '\n' << diagonal_sum_string << '\n' << std::endl;
 }
 
 void MagicSquare::DisplayData() {

@@ -38,6 +38,9 @@ public:
         DestructArray();
         this->matrix = matrix;
     }
+    T** get_matrix() {
+        return this->matrix;
+    }
     void Fill(T value) {
         for(int i = 0; i < kSize; ++i) {
             for(int j = 0; j < kSize; ++j) {
